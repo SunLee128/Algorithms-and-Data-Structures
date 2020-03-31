@@ -77,3 +77,68 @@ function fib (n) {
   return fib(n - 1) + fib(n - 2);
 }
 console.log(fib(4)); //3
+
+//  Reverse - reverse the given string.
+
+function reverse (str) {
+  if (str.length <= 1) return str;
+  return reverse(str.slice(1)) + str[0];
+}
+console.log(reverse('Good')); //dooG
+
+// isPalindrome - returns true for palindrome
+
+function isPalindrome (str) {
+  if (str.length === 1) return true;
+  if (str.length === 2) return str[0] === str[1];
+  if (str[0] === str.slice(-1)) return isPalindrome(str.slice(1, -1));
+  return false;
+}
+
+console.log(isPalindrome('tacocat')); //true
+
+// someRecursive - returns true if a single value in the array returns true when passed to the callback. Otherwise returns false.
+
+const isOdd = (val) => val % 2 !== 0;
+function someRecursive (array, callback) {
+  if (array.length === 0) return false;
+  if (callback(array[0])) return true;
+  return someRecursive(array.slice(1), callback);
+}
+
+console.log(
+  someRecursive(
+    [
+      1,
+      2,
+      3,
+      4
+    ],
+    isOdd
+  )
+);
+// flatten - flattens array.
+
+function flatten (oldArr) {
+  var newArr = [];
+  for (var i = 0; i < oldArr.length; i++) {
+    if (Array.isArray(oldArr[i])) {
+      newArr = newArr.concat(flatten(oldArr[i]));
+    } else {
+      newArr.push(oldArr[i]);
+    }
+  }
+  return newArr;
+}
+
+console.log(
+  flatten([
+    1,
+    2,
+    3,
+    [
+      4,
+      5
+    ]
+  ])
+);
